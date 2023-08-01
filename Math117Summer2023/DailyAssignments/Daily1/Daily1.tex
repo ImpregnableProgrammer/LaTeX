@@ -1,0 +1,113 @@
+\documentclass[11pt,twoside]{article}
+
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{fancybox}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+% arithmetic for arguments to counter commands
+% counters: https://www.overleaf.com/learn/latex/Counters
+% \usepackage{calc}
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+
+% commands for rending number class symbols
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+% renders set of residue classes mod n (arg #1)
+\newcounter{a}
+\newcommand{\residues}[1]{
+    \{
+        \newcommand{\residue}[1]{
+            \overline{\arabic{a}}
+            \stepcounter{a}
+            \ifnum\value{a}<#1
+                , % output comma
+                \residue{#1}
+            \else
+                \setcounter{a}{0}
+            \fi
+        }
+        \residue{#1}
+    \}
+}
+
+% commands for certain maths structures
+\newcommand{\m}[1]{\begin{pmatrix}#1\end{pmatrix}}
+\newcommand{\ovl}[1]{\overline{#1}}
+
+\title{Daily Assignment 1}
+\author{Rohan Kapur, Math 117 Summer 2023}
+\date{\today}
+
+\begin{document}
+
+    \maketitle
+
+    \begin{enumerate}
+        \item Consider the set $\Z_7=\residues{7}$ of residue classes of integers mod 7.
+        \begin{enumerate}
+            \item Construct the multiplication table for the group $\left(\Z_7\backslash\residues{1},\cdot\right)$ where $\cdot$ is defined using representatives: $\ovl{m}\cdot\ovl{n}=\ovl{mn}.\\$
+            \textbf{Answer:}
+
+            \newcounter{row}
+            \newcounter{col}
+            \setcounter{row}{-1}
+            \setcounter{col}{-1}
+
+            \newcommand\TAB{&} % tab separator for columns
+            \newcommand\NL{\\} % newline separator for rows
+
+            % Calculate val = #1 (MOD #2)
+            \newcounter{val}
+            \newcommand{\MOD}[2]{\setcounter{val}{#1}\ifnum\value{val}<#2 \theval\setcounter{val}{0}\else\setcounter{val}{#1-#2}\MOD{\value{val}}{#2}\fi}
+
+            % Calculate and output table (row, column) values
+            % Spacing matters after output in the code!! Like after `$\ovl{\therow}$' there should be no whitespace in the code!
+            \newcounter{prod}
+            \newcommand{\cols}[1]{
+                \ifnum\value{col}<0 
+                    \ifnum\value{row}>-1 $\ovl{\therow}$\else$\cdot$\fi
+                \else
+                    \ifnum\value{row}<0 $\ovl{\thecol}$\else\setcounter{prod}{\value{row}*\value{col}}$\ovl{\MOD{\theprod}{#1}}$\fi
+                \fi
+                \stepcounter{col}
+                \ifnum\value{col}<#1 \TAB \cols{#1}\else\setcounter{col}{-1}\fi
+            }
+
+            % Output correct row formatting and call `\cols' method for each row
+            \newcommand{\rows}[1]{\cols{#1}\stepcounter{row}\ifnum\value{row}<#1\NL\hline\ifnum\value{row}=0\hline\hline\fi\rows{#1}\else\setcounter{row}{-1}\fi}
+
+            % Render multiplication table with output given by `rows' for congruence classes modulo N
+            \def\N{7}
+            \begin{tabular}{c||c|c|c|c|c|c|c|}
+                \rows{\N} \\
+                \hline
+            \end{tabular}
+            \\
+            \item Use part $(a)$ to find the multiplicative inverse of every nonzero element of $\Z_7$. \\
+            \textbf{Answer:} $$ (\ovl{1})^{-1}=\ovl{1}, (\ovl{2})^{-1}=\ovl{4}, (\ovl{3})^{-1}=\ovl{5}, (\ovl{4})^{-1}=\ovl{2}, (\ovl{5})^{-1}=\ovl{3}, (\ovl{6})^{-1}=\ovl{6} $$
+
+        \end{enumerate}
+
+        \item Let $\mathbf{V}$ be a vector space over a field $\mathbf{F}$. Using only the definitions, prove the following for all $v \in V, a\in F$:
+        \begin{enumerate}
+            \item $0v=\mathbf{0}$ \\
+            \textbf{Proof:} This is saying that $0v$ is equal to the additive identity $\mathbf{0}$ in $V$. To see this, notice that by distributivity of $F$ over $V$, $0v+0v=(0+0)v=0v$. Then by adding $-(0v)$ to both sides, we get $0v = \mathbf{0}$ as desired. $\blacksquare$
+            \item $(-a)v=-(av)$ \\
+            \textbf{Proof:} This is saying that $(-a)v$ equals the unique additive inverse $-(av)$ of $av$. To see this, notice that by distributivity of $V$ over $F$, $(-a)v+av=(-a+a)v=0v=\mathbf{0}$. Therefore $(-a)v$ is indeed the unique additive inverse of $av$ in $V$, so $(-a)v=-(av)$. $\blacksquare$
+            \item $a\mathbf{0}=\mathbf{0}$ \\
+            \textbf{Proof:} This is saying that $a\mathbf{0}$ is the additive identity in $V$. To see this, notice that by distributivity of $V$ over $F$, $a\mathbf{0} + a\mathbf{0}=a(\mathbf{0} + \mathbf{0})=a\mathbf{0}$. Then by adding $-(a\mathbf{0})$ to both sides, we get $a\mathbf{0}=\mathbf{0}$. $\blacksquare$
+            \item If $av=\mathbf{0}$, then $a=0$ or $v=\mathbf{0}$. \\
+            \textbf{Proof:} Suppose that $av=\mathbf{0}$, so $av$ is the unique additive identity in $V$. Now suppose that $v \ne \mathbf{0}$. 
+
+        \end{enumerate}
+        
+
+    \end{enumerate}
+
+\end{document}
