@@ -1,0 +1,39 @@
+% Differential Calculus
+\documentclass[12pt]{article}
+\title{\underline{Derivative Table}}
+\usepackage[margin=1in]{geometry}
+\usepackage{tasks} % For horizontal (rather than vertical) lists
+\usepackage{datetime}
+\linespread{1.6}
+\newcommand{\Deriv}[2]{\(\displaystyle \frac{d}{dx} #1 = #2\)}
+\begin{document}
+\begin{flushright}
+  Author: Rohan Kapur \\
+  Created: \today
+\end{flushright}
+\centering{
+  {\underline{\Huge{My Calculus Notes}}}
+}
+\begin{abstract}
+  The Derivative of any continuous function \(f(x)\) is the function \(f^\prime(x)\) for which \(\forall{a}\) in the domain of \(f\), geometrically speaking, \(f^\prime(a)\) equals the slope of the line \textit{tangent} to the point \((a, f(a))\). In other words, \(f^\prime(x)\) is the instantaeous rate of change of \(f(x)\) at any point in its domain.
+\end{abstract}
+\begin{flushleft}{\subsection*{\underline{The Limit Definition of Derivatives}}}\end{flushleft}
+\Deriv{f(x)}{\lim_{h \rightarrow 0}\frac{f(x+h)-f(x)}{h}} = \(\displaystyle \lim_{h \rightarrow a}\frac{f(h) - f(a)}{h - a}\)
+\begin{flushleft}{\subsection*{\underline{Derivative Rules}}}\end{flushleft}
+\vspace{-1.5cm}
+%\begin{Large}
+\begin{tasks}[label=$\bullet$](2)
+  \task {\Deriv{x^{a}}{ax^{a-1}}}
+  \task {\Deriv{f(x) \pm g(x) \pm \dots}{f^\prime(x) \pm g^\prime(x) \pm \dots}}
+  \task {\Deriv{f(x)g(x)}{f^\prime(x)g(x)+f(x)g^\prime(x)}}
+  \task {\Deriv{\frac{f(x)}{g(x)}}{\frac{f^\prime(x)g(x)-f(x)g^\prime(x)}{[g(x)]^2}}}
+  \task {\Deriv{f(g(x))}{f^\prime(g(x))g^\prime(x)}}
+  \task {\Deriv{f^{-1}(x)}{\frac{1}{f^\prime(f^{-1}(x))}}}
+  \task {\Deriv{\sin(x)}{\cos(x)}}
+  \task {\Deriv{\cos(x)}{-\sin{x}}}
+  \task {\Deriv{e^x}{e^x}}
+  \task {\Deriv{\ln(x)}{\frac{1}{x}}}
+  \task {\Deriv{a^{x}}{a^{x}\ln(a)}}
+\end{tasks}
+%\end{Large}
+\end{document}

@@ -1,0 +1,52 @@
+% This is a comment in LaTeX!
+% Use `pdflatex` to compile .tex files to LaTeX .pdf files
+% Use `pdftex` for plain TeX files .tex to .pdf
+% Use `kpsewhere` to find where various packages are located
+% Use `tlmgr` to manage your Tex Live distribution
+% Use `tex` or `latex` to convert from .tex to .dvi (https://en.wikipedia.org/wiki/Device_independent_file_format)
+% Use `dvipdf` to convert from .dvi to .pdf
+% Use `dvips` to convert from .dvi to .ps (PostScript)
+% Use `ps2pdf` to convert from .ps to .pdf
+% Use `texliveonfly` to automatically install missing packages for any .tex file
+% No `man` or `info` pages for TeX utilities
+% Instead, append `--help` to the end of any of them to get information about them
+% /usr/bin/texlive/2016 is the TeX live main distribution directory
+% All Tex Live utilities are located in /Library/TeX/texbin
+% Tutorial: https://en.wikibooks.org/wiki/LaTeX
+\documentclass[letterpaper,12pt]{article}
+% Begin preamble
+\title{\underline{My First \LaTeX{} Document!}}
+\author{Rohan Kapur}
+\usepackage{amsmath} % ``Import'' more advanced math typesetting tools
+% Reduce margin sizes
+\usepackage[margin=1in]{geometry} 
+% End preamble
+\begin{document}
+\maketitle
+\begin{abstract}
+  Well, this is apparently an abstract. Let us make it longer. Let us add a mathematical formula...How about the definition for fibonacci numbers?
+  \[x_{0} = 0\]
+  \[x_{1} = 1\]
+  \[x_{n} = x_{n-1} + x_{n-2}\]
+\end{abstract}
+Well, here is my first ever LaTeX document! Some mathematical formulas inline: \(\frac{2}{3}e^{x+2}\) and on a new line!:
+\[\frac{2}{3}e^{x+2}\]
+Matrices!
+\[
+\begin{bmatrix}
+  3 & 4 & 5 \\
+  5 & 6 & 7
+\end{bmatrix}
+\cdot
+\begin{bmatrix}
+  3 & 4 \\
+  5 & 6 \\
+  6 & 7
+\end{bmatrix}
+=
+\begin{bmatrix}
+  59 & 71 \\
+  87 & 105
+\end{bmatrix}
+\]
+\end{document}
