@@ -1,11 +1,19 @@
 \documentclass[11pt,twoside]{article}
 
+% \chktex is used for linting tex files
+% This is the default `chktexrc' config file used: http://git.savannah.nongnu.org/cgit/chktex.git/tree/chktex/chktexrc.in
+% which is where the current warnings are coming from
+% \chktex documentation: https://ctan.math.illinois.edu/support/chktex/ChkTeX.pdf
+
 \usepackage{amsmath}
 \usepackage{mathtools}
 \usepackage{amssymb}
 \usepackage{fancybox}
 \usepackage{fancyhdr}
 \usepackage{graphicx}
+% booktabs: much nicer tables! https://texdoc.org/serve/booktabs.pdf/0
+% Recommended by chktex
+\usepackage{booktabs}
 \usepackage[T1]{fontenc}
 % arithmetic for arguments to counter commands
 % counters: https://www.overleaf.com/learn/latex/Counters
@@ -18,15 +26,14 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\C}{\mathbb{C}}
 
-% renders set of residue classes mod n (arg #1)
+% Renders set of residue classes mod n (arg #1)
 \newcounter{a}
 \newcommand{\residues}[1]{
     \{
         \newcommand{\residue}[1]{
             \overline{\arabic{a}}
             \stepcounter{a}
-            \ifnum\value{a}<#1
-                , % output comma
+            \ifnum\value{a}<#1, % output comma
                 \residue{#1}
             \else
                 \setcounter{a}{0}
@@ -46,68 +53,85 @@
 
 \begin{document}
 
-    \maketitle
+\maketitle
 
-    \begin{enumerate}
-        \item Consider the set $\Z_7=\residues{7}$ of residue classes of integers mod 7.
-        \begin{enumerate}
-            \item Construct the multiplication table for the group $\left(\Z_7\backslash\residues{1},\cdot\right)$ where $\cdot$ is defined using representatives: $\ovl{m}\cdot\ovl{n}=\ovl{mn}.\\$
-            \textbf{Answer:}
+\begin{enumerate}
+    \stepcounter{enumi} % change starting point of enumeration
+    \item Consider the set $\Z_7=\residues{7}$ of residue classes of integers mod 7.
+          \begin{enumerate}
+              \item Construct the multiplication table for the group $\left(\Z_7\backslash\residues{1},\cdot\right)$ where $\cdot$ is defined using representatives: $\ovl{m}\cdot\ovl{n}=\ovl{mn}.\\$
+                    \textbf{Answer:}
+                    \newcounter{row}
+                    \newcounter{col}
+                    \setcounter{row}{-1}
+                    \setcounter{col}{-1}
 
-            \newcounter{row}
-            \newcounter{col}
-            \setcounter{row}{-1}
-            \setcounter{col}{-1}
+                    \newcommand\TAB{&} % tab separator for columns
+                    \newcommand\NL{\\} % newline separator for rows
 
-            \newcommand\TAB{&} % tab separator for columns
-            \newcommand\NL{\\} % newline separator for rows
+                    % Calculate val = #1 (MOD #2)
+                    \newcounter{val}
+                    \newcommand{\MOD}[2]{\setcounter{val}{#1}\ifnum\value{val}<#2 \theval\setcounter{val}{0}\else\setcounter{val}{#1-#2}\MOD{\value{val}}{#2}\fi}
 
-            % Calculate val = #1 (MOD #2)
-            \newcounter{val}
-            \newcommand{\MOD}[2]{\setcounter{val}{#1}\ifnum\value{val}<#2 \theval\setcounter{val}{0}\else\setcounter{val}{#1-#2}\MOD{\value{val}}{#2}\fi}
+                    % Calculate and output table (row, column) values
+                    % Spacing matters after output in the code!! Like after `$\ovl{\therow}$' there should be no whitespace in the code!
+                    \newcounter{prod}
+                    \newcommand{\cols}[1]{
+                        \ifnum\value{col}<0
+                            \ifnum\value{row}>-1 $\ovl{\therow}$\else$\cdot$\fi
+                        \else
+                            \ifnum\value{row}<0 $\ovl{\thecol}$\else\setcounter{prod}{\value{row}*\value{col}}$\ovl{\MOD{\theprod}{#1}}$\fi
+                        \fi
+                        \stepcounter{col}
+                        \setcounter{prod}{#1-1}
+                        \ifnum\value{col}<#1 \TAB\cols{#1}\else\setcounter{col}{-1}\fi
+                    }
 
-            % Calculate and output table (row, column) values
-            % Spacing matters after output in the code!! Like after `$\ovl{\therow}$' there should be no whitespace in the code!
-            \newcounter{prod}
-            \newcommand{\cols}[1]{
-                \ifnum\value{col}<0 
-                    \ifnum\value{row}>-1 $\ovl{\therow}$\else$\cdot$\fi
-                \else
-                    \ifnum\value{row}<0 $\ovl{\thecol}$\else\setcounter{prod}{\value{row}*\value{col}}$\ovl{\MOD{\theprod}{#1}}$\fi
-                \fi
-                \stepcounter{col}
-                \ifnum\value{col}<#1 \TAB \cols{#1}\else\setcounter{col}{-1}\fi
-            }
+                    % Output correct row formatting and call `\cols' method for each row
+                    \newcommand{\rows}[1]{\cols{#1}\stepcounter{row}\ifnum\value{row}<#1\NL\ifnum\value{row}=0\toprule\else\midrule\fi\rows{#1}\else\setcounter{row}{-1}\fi}
 
-            % Output correct row formatting and call `\cols' method for each row
-            \newcommand{\rows}[1]{\cols{#1}\stepcounter{row}\ifnum\value{row}<#1\NL\hline\ifnum\value{row}=0\hline\hline\fi\rows{#1}\else\setcounter{row}{-1}\fi}
+                    % Render multiplication table with output given by `rows' for congruence classes modulo N
+                    \def\N{7}
+                    % Whoa, `booktabs' tables look really nice!
+                    \begin{tabular}{c|*{\N}{c}}
+                        \rows{\N}\\
+                        \bottomrule
+                    \end{tabular}
+              \item Use part $ (a) $ to find the multiplicative inverse of every nonzero element of $\Z_7$. \\
+                    \textbf{Answer:}\[(\ovl{1})^{-1}=\ovl{1}, (\ovl{2})^{-1}=\ovl{4}, (\ovl{3})^{-1}=\ovl{5}, (\ovl{4})^{-1}=\ovl{2}, (\ovl{5})^{-1}=\ovl{3}, (\ovl{6})^{-1}=\ovl{6}\]
 
-            % Render multiplication table with output given by `rows' for congruence classes modulo N
-            \def\N{7}
-            \begin{tabular}{c||c|c|c|c|c|c|c|}
-                \rows{\N} \\
-                \hline
-            \end{tabular}
-            \\
-            \item Use part $(a)$ to find the multiplicative inverse of every nonzero element of $\Z_7$. \\
-            \textbf{Answer:} $$ (\ovl{1})^{-1}=\ovl{1}, (\ovl{2})^{-1}=\ovl{4}, (\ovl{3})^{-1}=\ovl{5}, (\ovl{4})^{-1}=\ovl{2}, (\ovl{5})^{-1}=\ovl{3}, (\ovl{6})^{-1}=\ovl{6} $$
+          \end{enumerate}
 
-        \end{enumerate}
+    \item Let $V$ be a vector space over a field $F$. Using only the definitions, prove the following for all $v \in{V}, a\in{F}$:
+          \begin{enumerate}
+              \item $0v=\mathbf{0}$ \\
+                    \textbf{Proof:} This is saying that $0v$ maps to the additive identity $\mathbf{0}$ in $V$. To see this, notice that by distributivity of $F$ over $V$, $0v+0v=(0+0)v=0v$. Then by adding $-(0v)$ to both sides, we get $0v = \mathbf{0}$ as desired. $\blacksquare$
+              \item $(-a)v=-(av)$ \\
+                    \textbf{Proof:} This is saying that $(-a)v$ maps to the unique additive inverse $-(av)$ of $av$. To see this, notice that by distributivity of $V$ over $F$, $(-a)v+av=(-a+a)v=0v=\mathbf{0}$. Therefore $(-a)v$ is indeed the unique additive inverse of $av$ in $V$, so $(-a)v=-(av)$. $\blacksquare$
+              \item $a\mathbf{0}=\mathbf{0}$ \\
+                    \textbf{Proof:} This is saying that $a\mathbf{0}$ is equivalent to the additive identity $\mathbf{0}\in V$. To see this, notice that by distributivity of $V$ over $F$, $a\mathbf{0} + a\mathbf{0}=a(\mathbf{0} + \mathbf{0})=a\mathbf{0}$. Then by adding $ -(a\mathbf{0}) $ to both sides, we get $a\mathbf{0}=\mathbf{0}$. $\blacksquare$
+              \item If $av=\mathbf{0}$, then $a=0$ or $v=\mathbf{0}$. \\
+                    \textbf{Proof:} Suppose that $av=\mathbf{0}$, so $av$ is the additive identity in $V$, and suppose for contradiction that $a\ne 0$ and $v\ne\mathbf{0}$. Then there must exist a multiplicative inverse $a^{-1}\in F$ of $a$ such that $aa^{-1}=1$, so $a^{-1}av=(a^{-1}a)v=1v=v=a^{-1}\mathbf{0}$, and then by part $(b)$, $v=a^{-1}\mathbf{0}=\mathbf{0}$. However, this contradicts $v\ne\mathbf{0}$, and therefore we must have $a=0$ or $v=\mathbf{0}$ to avoid the contradiction. $\blacksquare$
+          \end{enumerate}
 
-        \item Let $\mathbf{V}$ be a vector space over a field $\mathbf{F}$. Using only the definitions, prove the following for all $v \in V, a\in F$:
-        \begin{enumerate}
-            \item $0v=\mathbf{0}$ \\
-            \textbf{Proof:} This is saying that $0v$ is equal to the additive identity $\mathbf{0}$ in $V$. To see this, notice that by distributivity of $F$ over $V$, $0v+0v=(0+0)v=0v$. Then by adding $-(0v)$ to both sides, we get $0v = \mathbf{0}$ as desired. $\blacksquare$
-            \item $(-a)v=-(av)$ \\
-            \textbf{Proof:} This is saying that $(-a)v$ equals the unique additive inverse $-(av)$ of $av$. To see this, notice that by distributivity of $V$ over $F$, $(-a)v+av=(-a+a)v=0v=\mathbf{0}$. Therefore $(-a)v$ is indeed the unique additive inverse of $av$ in $V$, so $(-a)v=-(av)$. $\blacksquare$
-            \item $a\mathbf{0}=\mathbf{0}$ \\
-            \textbf{Proof:} This is saying that $a\mathbf{0}$ is the additive identity in $V$. To see this, notice that by distributivity of $V$ over $F$, $a\mathbf{0} + a\mathbf{0}=a(\mathbf{0} + \mathbf{0})=a\mathbf{0}$. Then by adding $-(a\mathbf{0})$ to both sides, we get $a\mathbf{0}=\mathbf{0}$. $\blacksquare$
-            \item If $av=\mathbf{0}$, then $a=0$ or $v=\mathbf{0}$. \\
-            \textbf{Proof:} Suppose that $av=\mathbf{0}$, so $av$ is the unique additive identity in $V$. Now suppose that $v \ne \mathbf{0}$. 
+    \item Let $C(\R)$ be the real vector space of all continuous functions $f:\R\rightarrow\R$. Determine which of the following are subspaces of $C(\R)$, and justify your reasoning.
+          \begin{enumerate}
+              \item $A=\{f:f$ is twice differentiable and $f''(x)-2f'(x)+3f(x)=0$ for all $x\in\R\}$\\
+                    \textbf{Answer:} $A$ \textbf{is a subspace} of $C(\R)$ since $\mathbf{0}_{C(\R)}$, which is the function $f(x)=0$ for all $x\in \R$, is in $A$ since $f(x)=0$ is twice-differentiable, and $f''(x)-2f'(x)+3f(x)=0$. Also, $\forall a,b\in\R$, we have $\forall f_1,f_2\in A$ that $f_3=af_1 + bf_2\in A$ since, by linearity of differentiation,
+                    \begin{align*}
+                         & f_3'''-2f_3'+3f_3                          \\
+                         & =af_1'''+bf_2'''-2af_1'-2bf_2'+3af_1+3bf_2 \\
+                         & =a(f_1'''-2f_1'+3f_1)+b(f_2'''-2f_2'+3f_2) \\
+                         & =a0+b0=\boxed{0}
+                    \end{align*}
+                    Therefore, both subgroup criteria are satisfied. $\blacksquare$
+              \item $B=\{g:g$ is twice differentiable and $g''(x)=g(x)+1 $ for all $x\in\R\}$\\
+                    \textbf{Answer:} $B$ \textbf{is \textit{not} a subspace} since $\forall x\in\R, f(x)=0$, the additive identity of $C(R)$, is \textit{not} in $B$ since $f''(x)=0\ne f''(x)+1=1$. $\blacksquare$
+              \item $C=\{h:h$ is twice differentiable and $h''(0)=2h(1)\}$\\
+                    \textbf{Answer:} $C$ \textbf{is a subspace} of $C(\R)$ since, firstly, the function $\forall x\in\R, f(x)=0$ is in $C(\R)$ as $f''(0)=0=2f(1)=0$, and also $\forall a,b\in\R$ and $\forall f_1,f_2\in C$, we have $af_1+bf_2\in C$ since $f_1''(0)=2f_1(1)$ and $f_2''(0)=2f_2(1)$, so by linearity of differentiation, $(af_1+bf_2)'''(0)=af_1'''(0)+bf_2'''(0)=2af_1(1)+2bf_2(1)=2(af_1+bf_2)(1)$, satisfying both subgroup criteria. $\blacksquare$
 
-        \end{enumerate}
-        
+          \end{enumerate}
 
-    \end{enumerate}
+\end{enumerate}
 
 \end{document}

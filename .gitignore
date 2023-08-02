@@ -1,5 +1,7 @@
 # macOS files directories
-**/.DS_Store## Core latex/pdflatex auxiliary files:
+.DS_Store
+
+## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
 *.log
