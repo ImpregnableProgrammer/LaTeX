@@ -1,0 +1,84 @@
+\documentclass[11pt,twoside]{article}
+
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{fancybox}
+\usepackage{fancyhdr}
+% https://tex.stackexchange.com/questions/664/why-should-i-use-usepackaget1fontenc
+\usepackage[T1]{fontenc}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{booktabs} % better table formatting using `\toprule', `\midrule', \bottomrule
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+
+% commands for rending number class symbols
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+% commands for certain maths structures
+\newcommand{\m}[1]{\begin{pmatrix}#1\end{pmatrix}}
+
+% custom command to generate generalized #1 x #2 matrix with the entries denoted by the letter given in `#3'
+\newcommand{\Matrix}[3]{
+    \newcounter{row}
+    \newcounter{col}
+    \newcommand{\TAB}{&}
+    \newcommand{\NL}{\\}
+    \newcommand{\genCols}[3]{\ifnum\value{col}<#2#3_{\arabic{row},\arabic{col}}\TAB\stepcounter{col}\genCols{#1}{#2}{#3}\else\setcounter{col}{0}\fi}
+    \newcommand{\genRows}[3]{\genCols{#1}{#2}{#3}\ifnum\value{row}<#1\NL\stepcounter{row}\genRows{#1}{#2}{3}\else\setcounter{row}{0}\fi}
+    \m{\genRows{#1}{#2}{#3}}
+}
+
+\title{Daily Assignment 2}
+\author{Rohan Kapur, Math 117 Summer 2023}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{enumerate}
+    \item Let $F$ be any field. A \textit{Fibonacci sequence} in $F$ is a function $ f: \N \rightarrow F $ defined recursively by letting $ f(0), f(1) $ be elements of $F$ and then setting $f(n+2)=f(n+1)+f(n)$ for all $n\in \N$. Show that the set $\mathcal{F}$ of all Fibonacci sequences in $F$ is a subspace of $F^\N$. Then compute the dimension of this space.
+          \\\hbox{}\\
+          \textbf{Solution.} The zero element of $F^\N$, $\mathbf{0}_{F^\N}$, defined to be $g:\N\rightarrow F$ where $g(n)=0$, is in $\mathcal{F}$ by letting $f(0)=f(1)=0$ and noticing that $f(n+2)=f(n+1)+f(n)$ means that $f(n)=0$ for all $n\in \N$. We also have that for any two elements $f, g\in \mathcal{F}$, and for any $\alpha, \beta\in F$, $\alpha{f} + \beta{g}\in \mathcal{F}$ since $\alpha{f(n)} + \beta{g(n)}=(\alpha{f} + \beta{g})(n)$ for all $n\in\N$ under the operations of addition and scalar multiplication. Therefore $\mathcal{F}$ is a subspace of $F^\N$, and the dimension of this subspace is $\dim_F(\mathcal{F})=2$ since any Fibonacci sequence can be defined by any scalar multiple of the first two elements $f(0)=1,f(1)=1$ with basis $S=\{1,1\}$. $\square$
+
+    \item For each of the following, determine whether the set of vectors $S$ is a spanning set for the vector space $V$ over the field $F$. If $S$ is a spanning set, determine whether it's a basis, and justify your answers.
+          \begin{enumerate}
+              \item $F=\Q,V=Q(\sqrt{2})=\{a+b\sqrt{2}: a,b\in\Q\},S=\{1-\sqrt{2},4\}$. \\
+                    \textbf{Solution.} Yes, $S$ is a spanning set for $V$ since $Span(S)=\{\alpha(1-\sqrt{2}) + \beta(4):\alpha,\beta\in\Q\}=V$ where $\alpha(1-\sqrt{2})+\beta(4)=(\alpha+\beta)-\alpha\sqrt{2}=c+d\sqrt{2}$, and $c=\alpha+\beta\in\Q$ by closure and $d=-\alpha\in\Q$. Then $S$ is also a basis for $V$ since $(\alpha+\beta)-\alpha\sqrt{2}=0=0+0\sqrt{2}$ implies $\alpha=\beta=0$, making the elements in $S$ linearly independent. $\square$
+              \item $F=\Z_2,V=\left\{\m{a_{11} & a_{12} \\ a_{21} & a_{22}}\in F^{2\times2}:a_{11}+a_{22}=0\right\}, S=\left\{\m{1&0\\0&1}, \m{1&1\\0&1}, \m{1&0\\1&1}\right\}$ \\
+                    \textbf{Solution.} Yes, $S$ is a spanning set for $V$ since
+                    \[Span(S)=\left\{a\m{1&0\\0&1}+b\m{1&1\\0&1}+c\m{1&0\\1&1}: a,b,c\in\Z_2\right\}\]
+                    where
+                    \[a\m{1&0\\0&1}+b\m{1&1\\0&1}+c\m{1&0\\1&1}=\m{a+b+c&b\\c&a+b+c}\]
+                    and $a_{11}+a_{22}=2(a+b+c)\equiv 0\pmod{2}$ for all $a,b,c\in\Z_2$, so $Span(S)= V$. Also, $S$ is a basis for $V$ since
+                    \[\m{a+b+c&b\\c&a+b+c}=0^{2\times 2}=\m{0&0\\0&0}\]implies that $a+b+c=0$ since $b=c=0$, so the elements of $S$ are linearly independent as well. $\square$
+              \item $F=\Z_2,V=F_2[x]=\{a_0+a_1x+a_2x^2:a_0,a_1,a_2\in F\},S=\{1+x, 1+x^2\}$ \\
+                    \textbf{Solution.} Yes, $Span(S)=\{a(1+x)+b(1+x^2):a,b\in \Z_2\}=V$ since
+                    \[a(1+x)+b(1+x^2)=(a+b)+ax+bx^2=c+ax+bx^2\]
+                    where $c=a+b\in \Z_2$ by closure. Also, $S$ is a basis since $(a+b)+ax+bx^2=0=0+0x+0x^2$ implies $a=b=0$, making the $S$ linearly independent. $\square$
+          \end{enumerate}
+    \item Let $M:=\text{Mag}_3(\R)$ denote the set of $3\times 3$ magic squares with entries from $\R$.
+    \begin{enumerate}
+        \item Show that $M$ is a subspace of $\R^{3\times 3}$. \\
+        \textbf{Solution.} $M$ is a subspace of $R^{3\times 3}$ since
+        \[0^{3\times 3}=\m{0&0&0\\0&0&0\\0&0&0}\in M\]
+        by the definition of magic squares with every column, row, and diagonal sum having the same value of 0. Then $\forall a,b\in\R$ and $\forall A,B\in M, aA+bB\in M$ since, for any row, column, or diagonal sum $S_A$ for magic square $A$ and the corresponding row, column, or diagonal sum $S_B$ for magic square $B$, the row, column, and diagonal sums $aS_A + bS_b$ for the sum of the scalar multiple of the magic squares $A$ and $B$ will be the same, maintaining the defining property for a $3\times 3$ magic square. $\square$
+        \item Find a basis for $M$. \\
+        % Source for the following solution: https://math.stackexchange.com/a/2171107/339188
+        \textbf{Solution.} A basis for $M$ is given by 
+        \begin{align*}
+            S=&\left\{\m{2/3&2/3&-1/3\\-2/3&1/3&4/3\\1&0&0},\m{0&-1&1\\1&0&-1\\-1&0&0},\m{0&0&1\\2&0&-2\\-1&0&0}\right\}
+        \end{align*}
+        where the scalar for the first matrix is the row, column, and diagonal sum for the magic square. $\square$
+        \item What is the dimension of $M$? \\
+        \textbf{Solution.} The dimension of $M$ is the size of its basis given above, which is $\dim_\R{M}=3$.$\square$
+    \end{enumerate}
+
+\end{enumerate}
+
+\end{document}
