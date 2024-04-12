@@ -1,9 +1,14 @@
 {
     "spellright.language": [
-        "en"
+        "en-US-10-1."
     ],
     "spellright.documentTypes": [
-        "markdown",
-        "latex"
-    ]
+        "latex",
+        "markdown"
+    ],
+    // Bug in extension with chktex, so just disable this linting for now...
+    // Linting is also just kinda annoying...
+    // Extensions mainly used for formatting using `latexindent`, which works fine
+    // Can just run `chktex <file>` from command line to lint documents
+    "latex.linter.enabled": false
 }
