@@ -1,0 +1,199 @@
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{blindtext}
+\usepackage[margin=.5in]{geometry}
+\usepackage{fontawesome5} % For unique icons
+\usepackage{color}
+\usepackage{wrapfig}
+\usepackage{hyperref} % Insert hyperlinks: https://www.overleaf.com/learn/latex/Hyperlinks
+\usepackage{graphicx} % documentation: https://ctan.mirrors.hoobly.com/macros/latex/required/graphics/grfguide.pdf
+
+% Use comfortaa font: https://tug.org/FontCatalogue/comfortaa/
+\usepackage[default]{comfortaa}
+\usepackage[T1]{fontenc}
+% Set font size throughout document: https://www.overleaf.com/learn/latex/Questions/How_do_I_adjust_the_font_size%3F#LaTeX_font_size_commands
+\begin{document}
+
+% Set custom default fontsize for document
+\fontsize{8.5pt}{\baselineskip}\selectfont
+
+\begin{multicols}{3}
+  \begin{huge} \noindent\textbf{Rohan Kapur} \end{huge} \\
+  \begin{Large} \textcolor{cyan}{Software Engineer} \end{Large} 
+  \vspace{.5em} \\
+  \begin{minipage}{.4\textwidth}
+    \begin{flushleft}
+      Graduated in 2023 from UC Santa Cruz with a degree in computer science and mathematics and a minor in computer engineering. Extensive experience with peer tutoring, full-stack web and mobile app dev using React/React-Native, Python programming, SQL database management, Google Cloud deployments, Docker container configuration, embedded and distributed systems programming. Open to full time work and research/teaching opportunities related to demonstrated interests.
+    \end{flushleft}
+  \end{minipage}
+  \columnbreak \\
+  \vspace{4em} \\
+  \begin{minipage}{.33\textwidth}
+    \hspace{8em}
+    \includegraphics*[width=4cm,height=4cm]{images/ProfilePicture.jpg}
+  \end{minipage}
+  \columnbreak \\
+  \begin{flushright}
+    \vspace{3em}
+    \faEnvelope\hspace{4px}\href{mailto:rkapurschool@gmail.com}{rkapurschool@gmail.com} \\
+    \vspace{1em}
+    \faMobile*\hspace{4px}925-522-1818 \\
+    \vspace{1em}
+    \faLocationArrow\hspace{4px}Antioch, CA \\
+    \vspace{1em}
+    \faGithub\hspace{4px}\href{https://github.com/ImpregnableProgrammer}{ImpregnableProgrammer} \\
+    \vspace{1em}
+    \faLinkedin\hspace{4px}\href{https://www.linkedin.com/in/rohan-kapur-9ab9494a}{/in/rohan-kapur-9ab9494a}
+  \end{flushright}
+\end{multicols}
+{\color{magenta}\hrule}
+\vspace{.5em}
+% starred environment means unbalanced columns
+\begin{multicols*}{2}
+  %% EDUCATION %%
+  \begin{LARGE} \noindent\faSchool\hspace{5px}EDUCATION \end{LARGE}
+  \vspace{.5em} \\
+    %% SCHOOL 1 %%
+  \begin{large}
+    \textbf{University of California, Santa Cruz}
+  \end{large} \\
+  \textit{\textcolor{black}{Santa Cruz, CA \qquad Sept. 2019 - Dec. 2023}} \\
+  B.S. in Computer Science \\ 
+  B.A. in Pure Mathematics \\
+  Minor in Computer Engineering \\
+  Relevant Coursework: \\
+  % \indent\indent
+  % Create a whole paragraph that';s indented a certain amount
+  %\begin{minipage}{.4\textwidth}
+    % \begin{flushleft}
+    %  Learned how to properly implement several critical data structures in C. Several difficult projects were given to complete under tight time constraints, such as implementing Huffman encoding and decoding.
+    % \end{flushleft}
+  %\end{minipage}
+  % parbox vs. minipage env: https://tex.stackexchange.com/q/6472
+  \indent \parbox{.45\textwidth}{CSE 12 (Assembly Programming in MIPS)}\\
+  \indent CSE 13S (Computer Systems C Programming)\\
+  \indent \parbox{.45\textwidth}{CSE 101 (Data structures and Algorithms in C/C++)}\\
+  \indent CSE 120 (Computer Architecture)\\
+  \indent CSE 100 (Logic Design using Verilog)\\
+  \indent CSE 121 (Embedded Systems)\\
+  \indent CSE 114A (Functional Programming in Haskell) \\
+  \indent CSE 115A+D (Software Engineering Projects)\\
+  \indent CSE 138 (Distributed Systems)
+  \vspace{1em} \\
+  %% TECHNICAL SKILLS %%
+  \begin{LARGE} \faLaptop\hspace{5px}TECHNICAL SKILLS \end{LARGE}
+  \vspace{.5em} \\
+      %% PROGRAMMING LANGUAGES %%
+  \begin{large} \textbf{Programming Languages} \end{large} 
+  \vspace{3px} \\ \indent
+  \begin{minipage}{.45\textwidth}
+    \begin{flushleft}
+      Python, Bash, Java, (Java|Type)script, C/C++, RISC-V/MIPS Assembly, Haskell, Verilog HDL, (Postgre)SQL, R, Matlab
+    \end{flushleft}
+  \end{minipage}
+  \vspace{.5em} \\
+    %% FRAMEWORKS %%
+  \begin{large} \textbf{Frameworks} \end{large} 
+  \vspace{3px} \\ \indent
+  \begin{minipage}{.45\textwidth}
+    \begin{flushleft}
+      React, React Native, Flask, FastAPI, Numpy, Matplotlib, ESLint, PHP Laravel, Vue.js, Qt, Agile development
+    \end{flushleft}
+  \end{minipage}
+  \vspace{.5em} \\
+    %% PLATFORMS %%
+  \begin{large} \textbf{Platforms} \end{large}
+  \vspace{3px} \\ \indent
+  \begin{minipage}{.45\textwidth}
+    \begin{flushleft}
+      Linux (Arch/Ubuntu/Fedora/etc), macOS, Google Cloud Platform, Firebase/Firestore, ARM ISA, ESP32/Arduino microcontrollers, Raspberry Pi
+    \end{flushleft}
+  \end{minipage}
+  \vspace{.5em} \\
+    %% DEVELOPER TOOLS %%
+  \begin{large} \textbf{Developer Tools} \end{large} 
+  \vspace{3px} \\ \indent
+  \begin{minipage}{.45\textwidth}
+    \begin{flushleft}
+      VSCode (devcontainers), \LaTeX, Git, Github, Docker, Snowflake, Postman, Jira, Confluence, PyCharm, IntelliJ, Eclipse, Vim, Emacs, Nano
+    \end{flushleft}
+  \end{minipage}
+  \vspace{.5em} \\
+    %% COMMUNICATION %%
+  \begin{large} \textbf{Communication} \end{large}
+  \vspace{3px} \\ \indent
+  \begin{minipage}{.45\textwidth}
+    \begin{flushleft}
+      Slack, Discord, Zulip, Microsoft Teams, Zoom, Google Meet
+    \end{flushleft}
+  \end{minipage}
+  \columnbreak \\
+  %% WORK EXPERIENCE %%
+  \begin{LARGE}
+    \faBriefcase\hspace{5px}WORK EXPERIENCE
+  \end{LARGE}
+  \vspace{.5em} \\
+    %% JOB 1 %%
+  \begin{large} \textbf{Undergraduate Student Tutor} \end{large} \\
+  \textit{University of California, Santa Cruz \\ Santa Cruz, CA \qquad Jan. 2021 - Dec. 2023}
+  \vspace{5px} \\
+  \begin{minipage}{.5\textwidth}
+    \begin{flushleft}
+      Trained and worked as a peer tutor for several lower and upper-division computer science and math courses with the campus Learning Support Services and the Baskin Engineering school while managing a full-time student workload.
+    \end{flushleft}
+  \end{minipage}
+  \vspace{.5em} \\
+    %% JOB 2 %%
+  \begin{large} \textbf{Software Engineering Intern} \end{large} \\
+  \textit{\href{https://www.f5.com/}{F5 Networks} \\ Seattle, WA \qquad June 2022 - Sept. 2022}
+  \vspace{5px} \\
+  \begin{minipage}{.5\textwidth}
+    \begin{flushleft}
+      Worked at F5 corporate office in Seattle, WA during summer 2022 with internal data management team to aid in SaaS transition for BIG-IP product line. Facilitated transition of internal data from on-site databases to cloud-hosted database servers using Snowflake, with continuous deployment managed using Docker containers deployed in GitHub workflows. Worked with Jira to manage Agile workflow and Confluence for documentation.
+    \end{flushleft}
+  \end{minipage}
+  % \vspace{.5em} \\
+    %% JOB 3 %%
+  % \begin{large} \textbf{Student Dining Hall Worker} \end{large} \\
+  % \textit{University of California, Santa Cruz \\ Santa Cruz, CA \qquad Sept. 2021 - Feb. 2022}
+  \vspace{1em} \\
+  %% PROJECTS %%
+  \begin{LARGE} \faTools\hspace{5px}PROJECTS \end{LARGE}
+  \vspace{.5em} \\
+    %% PROJECT 1 %%
+  % blocks to isolate the effects of `set` commands
+  {
+    \fontsize{10.5pt}{\baselineskip}\selectfont
+    \textbf{Choreographic Programming Summer Research}
+  }
+  \textit{Typescript, Node.js, Git/Github, ESLint} \\
+  Summer 2023
+  \vspace{5px} \\
+  \begin{minipage}{.5\textwidth}
+    \begin{flushleft}
+      Worked with UCSC grad student to develop novel choreographic programming \href{https://github.com/ImpregnableProgrammer/choreography-ts-RK-work}{library} in Typescript for facilitating development of deadlock-free distributed system programs. Mainly helped write custom ESLint linting rules for the library, as well as using the library to implement RSA key exchange.
+    \end{flushleft}
+  \end{minipage}
+  \vspace{.5em} \\
+    %% PROJECT 2 %%
+  {
+    \fontsize{11pt}{\baselineskip}\selectfont
+    \textbf{Cross-platform Restroom-finding Mobile App}
+  }
+  % change font size mid-document
+  % \fontsize{9pt}{\baselineskip}\selectfont
+  % change font mid-document: https://tex.stackexchange.com/a/25251
+  % \fontfamily{pcrro8a}\selectfont
+  \textit{React Native, Firebase/Firestore, Github, Git, Agile} \\
+  Fall 2022
+  \vspace{5px} \\
+  \begin{minipage}{.5\textwidth}
+    \begin{flushleft}
+      Worked with a five-student team in CSE 115A to create cross-platform \href{https://github.com/CSE115AWinter2022-WePee}{mobile app} using React Native that crowd-sources and lets users locate/rate restrooms nearby. Followed Agile practices over 6 sprint cycles with weekly scrum and stand-up meetings. Primarily helped develop the front-end and necessary documentation.
+    \end{flushleft}
+  \end{minipage}
+\end{multicols*}
+
+\end{document}

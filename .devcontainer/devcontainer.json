@@ -13,10 +13,11 @@
 			"extensions": [
 				"James-Yu.latex-workshop",
 				"torn4dom4n.latex-support",
-				"mathematic.vscode-latex", // A little buggy...
+				"mathematic.vscode-latex",
 				"JeffersonQin.latex-snippets-jeff",
 				"sabertazimi.latex-snippets",
-				"ms-azuretools.vscode-docker"
+				"ms-azuretools.vscode-docker",
+				"streetsidesoftware.code-spell-checker"
 			]
 		}
 	}
