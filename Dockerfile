@@ -30,4 +30,4 @@ RUN apt-get install -y cpanminus && cpanm YAML::Tiny && cpanm File::HomeDir
 
 ## ADD ANY ADDITIONAL TEX PACKAGE INSTALLS BELOW THIS COMMENT!! ##
 # Look up packages in CTAN: https://ctan.org
-RUN . ~/.bashrc && tlmgr install latexmk mathtools fancybox booktabs tasks datetime etoolbox fmtcount xkeyval comfortaa blindtext fontawesome5 wrapfig
+RUN . ~/.bashrc && tlmgr install latexmk mathtools fancybox booktabs tasks datetime etoolbox fmtcount xkeyval comfortaa blindtext fontawesome5 wrapfig fundus-calligra calligra
