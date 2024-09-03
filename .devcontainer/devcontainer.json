@@ -17,7 +17,8 @@
         "JeffersonQin.latex-snippets-jeff",
         "sabertazimi.latex-snippets",
         "ms-azuretools.vscode-docker",
-        "streetsidesoftware.code-spell-checker"
+        "streetsidesoftware.code-spell-checker",
+        "valentjn.vscode-ltex"
       ]
     }
   }

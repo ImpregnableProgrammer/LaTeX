@@ -7,6 +7,7 @@
 \usepackage{fontawesome5} % For unique icons
 \usepackage{color}
 \usepackage{wrapfig}
+\usepackage{ragged2e} % For `justify` environment when needed
 \usepackage{hyperref} % Insert hyperlinks: https://www.overleaf.com/learn/latex/Hyperlinks
 \usepackage{graphicx} % documentation: https://ctan.mirrors.hoobly.com/macros/latex/required/graphics/grfguide.pdf
 
@@ -21,11 +22,12 @@
 
 \begin{multicols}{3}
   \begin{huge} \noindent\textbf{Rohan Kapur} \end{huge} \\
-  \begin{Large} \textcolor{cyan}{Software Engineer} \end{Large} 
+  \begin{Large} \textcolor{cyan}{Software Engineer} \end{Large}
   \vspace{.5em} \\
   \begin{minipage}{.5\textwidth}
     \begin{flushleft}
-      Graduated in 2023 from UC Santa Cruz with a degree in computer science and mathematics and a minor in computer engineering. Extensive experience with using Linux, full-stack web and mobile app dev using React/React-Native, programming in C/C++, Python programming, SQL database management, Google Cloud deployments, Docker container configuration, embedded and distributed systems programming. Open to full time work and research/teaching opportunities related to demonstrated interests.
+      Graduated in 2023 from UC Santa Cruz with a degree in computer science and mathematics and a minor in computer engineering. Extensive experience using Linux and macOS, developing full-stack web and mobile apps using React/React Native, programming in Python/
+      JavaScript/TypeScript/C/C++/Java/Haskell, SQL database management, Google Cloud deployments, Docker container configuration, programming embedded and distributed systems. Adept problem solver, communicator, learner, teacher, and team player who loves to engineer solutions to real world problems. Proponent of open-source software. Open to full time work/research/teaching opportunities.
     \end{flushleft}
   \end{minipage}
   \columnbreak \\
@@ -40,7 +42,7 @@
     \begin{flushright}
       \faEnvelope\hspace{4px}\href{mailto:rkapurschool@gmail.com}{rkapurschool@gmail.com} \\
       \vspace{1em}
-      \faMobile*\hspace{4px}925-522-1818 \\
+      \faMobile*\hspace{4px}+1-925-522-1818 \\
       \vspace{1em}
       \faLocationArrow\hspace{4px}Antioch, CA \\
       \vspace{1em}
@@ -57,21 +59,21 @@
   %% EDUCATION %%
   \begin{LARGE} \noindent\faSchool\hspace{5px}EDUCATION \end{LARGE}
   \vspace{.5em} \\
-    %% SCHOOL 1 %%
+  %% SCHOOL 1 %%
   \begin{large}
     \textbf{University of California, Santa Cruz}
   \end{large} \\
   \textit{Santa Cruz, CA \hfill Sept. 2019 - Dec. 2023\indent} \\
-  B.S. in Computer Science \\ 
+  B.S. in Computer Science \\
   B.A. in Pure Mathematics \\
   Minor in Computer Engineering \\
   Relevant Coursework: \\
   % \indent\indent
-  % Create a whole paragraph that';s indented a certain amount
+  % Create a whole paragraph that's indented a certain amount
   %\begin{minipage}{.4\textwidth}
-    % \begin{flushleft}
-    %  Learned how to properly implement several critical data structures in C. Several difficult projects were given to complete under tight time constraints, such as implementing Huffman encoding and decoding.
-    % \end{flushleft}
+  % \begin{flushleft}
+  %  Learned how to properly implement several critical data structures in C. Several difficult projects were given to complete under tight time constraints, such as implementing Huffman encoding and decoding.
+  % \end{flushleft}
   %\end{minipage}
   % parbox vs. minipage env: https://tex.stackexchange.com/q/6472
   \indent \parbox{.45\textwidth}{CSE 12 (Assembly Programming in MIPS)}\\
@@ -87,43 +89,43 @@
   %% TECHNICAL SKILLS %%
   \begin{LARGE} \faLaptop\hspace{5px}TECHNICAL SKILLS \end{LARGE}
   \vspace{.5em} \\
-      %% PROGRAMMING LANGUAGES %%
-  \begin{large} \textbf{Programming Languages} \end{large} 
+  %% PROGRAMMING LANGUAGES %%
+  \begin{large} \textbf{Programming Languages} \end{large}
   \vspace{3px} \\ \indent
   \begin{minipage}{.45\textwidth}
     \begin{flushleft}
-      Python, Bash, Java, (Java|Type)script, C/C++, RISC-V/MIPS Assembly, Haskell, Verilog HDL, (Postgre)SQL, R, Matlab
+      Python, JavaScript/TypeScript, C/C++, Java, Bash, Haskell, Lisp, RISC-V/MIPS Assembly, Verilog HDL, (Postgre)SQL, R, Matlab
     \end{flushleft}
   \end{minipage}
   \vspace{.5em} \\
-    %% FRAMEWORKS %%
-  \begin{large} \textbf{Frameworks} \end{large} 
+  %% FRAMEWORKS %%
+  \begin{large} \textbf{Frameworks} \end{large}
   \vspace{3px} \\ \indent
   \begin{minipage}{.45\textwidth}
     \begin{flushleft}
-      React, React Native, Flask, FastAPI, Numpy, Matplotlib, ESLint, PHP Laravel, Vue.js, Qt, Agile development, Kubernetes
+      React, React Native, Flask, FastAPI, Numpy, Matplotlib, PHP Laravel, ESLint, Vue.js, Next.js, Angular, Sqlite, Qt, Kubernetes, Agile development
     \end{flushleft}
   \end{minipage}
   \vspace{.5em} \\
-    %% PLATFORMS %%
+  %% PLATFORMS %%
   \begin{large} \textbf{Platforms} \end{large}
   \vspace{3px} \\ \indent
   \begin{minipage}{.45\textwidth}
     \begin{flushleft}
-      Linux (Arch/Ubuntu/Fedora/etc), macOS, Google Cloud Platform, Firebase/Firestore, ARM ISA, ESP32/Arduino microcontrollers, Raspberry Pi
+      Linux (Arch/Ubuntu/Fedora/etc.), macOS, Google Cloud Platform, Firebase/Firestore, ARM ISA, ESP32/Arduino microcontrollers, Raspberry Pi
     \end{flushleft}
   \end{minipage}
   \vspace{.5em} \\
-    %% DEVELOPER TOOLS %%
-  \begin{large} \textbf{Developer Tools} \end{large} 
+  %% DEVELOPER TOOLS %%
+  \begin{large} \textbf{Developer Tools} \end{large}
   \vspace{3px} \\ \indent
   \begin{minipage}{.45\textwidth}
     \begin{flushleft}
-      VSCode (devcontainers), \LaTeX, Git, Github, Docker, Snowflake, Postman, Jira, Confluence, PyCharm, IntelliJ, Eclipse, Vim, Emacs, Nano
+      VSCode (devcontainer setup, etc.), \LaTeX, Git, GitHub, GitLab, Docker, Snowflake, Postman, Jira, Confluence, PyCharm, IntelliJ, Eclipse, Vim, Emacs
     \end{flushleft}
   \end{minipage}
   \vspace{.5em} \\
-    %% COMMUNICATION %%
+  %% COMMUNICATION %%
   \begin{large} \textbf{Communication} \end{large}
   \vspace{3px} \\ \indent
   \begin{minipage}{.45\textwidth}
@@ -137,40 +139,62 @@
     \faBriefcase\hspace{5px}WORK EXPERIENCE
   \end{LARGE}
   \vspace{.5em} \\
-    %% JOB 1 %%
+  %% JOB 1 %%
+  \begin{large} \textbf{Baskin Day Student Volunteer} \end{large} \\
+  \textit{University of California, Santa Cruz \\ Santa Cruz, CA \hfill June 2023 - Oct. 2023}
+  \vspace{5px} \\
+  \begin{minipage}{.5\textwidth}
+    \begin{flushleft}
+      Volunteered as the outreach coordinator for the 2023 \href{https://baskinday.soe.ucsc.edu/}{Baskin Day} event, an annual event that showcases the clubs and research opportunities associated with the Baskin School of Engineering (BSOE), as well as providing opportunities for students to connect with each other and industry professionals as they prepare for life after graduation. Responsibilities included attending weekly check-in meetings; leading the team tasked with reaching out to professors and industry representatives interested in attending the event, as well as organizing student volunteers; and helping out on the day of the event.
+    \end{flushleft}
+  \end{minipage}
+  \vspace{.5em} \\
+  %% JOB 2 %%
   \begin{large} \textbf{Undergraduate Student Tutor} \end{large} \\
   \textit{University of California, Santa Cruz \\ Santa Cruz, CA \hfill Jan. 2021 - Dec. 2023}
   \vspace{5px} \\
   \begin{minipage}{.5\textwidth}
     \begin{flushleft}
-      Trained and worked as a peer tutor for several lower and upper-division computer science and math courses with the campus Learning Support Services and the Baskin Engineering school while managing a full-time student workload.
+      Trained and worked extensively as a peer group tutor for several lower and upper-division computer science and math courses with the campus Learning Support Services and the Baskin Engineering school while managing a full-time student workload for nearly 3 years. Held engaging daily/weekly group tutoring sessions which helped students learn tough material more effectively, saving them vital time and money.
     \end{flushleft}
   \end{minipage}
   \vspace{.5em} \\
-    %% JOB 2 %%
+  %% JOB 3 %%
   \begin{large} \textbf{Software Engineering Intern} \end{large} \\
   \textit{\href{https://www.f5.com/}{F5 Networks} \\ Seattle, WA \hfill June 2022 - Sept. 2022}
   \vspace{5px} \\
   \begin{minipage}{.5\textwidth}
     \begin{flushleft}
-      Worked at F5 corporate office in Seattle, WA during summer 2022 with internal data management team to aid in SaaS transition for BIG-IP product line. Facilitated transition of internal data from on-site databases to cloud-hosted database servers using Snowflake, with continuous deployment managed using Docker containers deployed in GitHub workflows. Worked with Jira to manage Agile workflow and Confluence for documentation.
+      Worked at F5 corporate office in Seattle, WA during Summer 2022 with internal data management team to aid in SaaS transition for BIG-IP product line. Facilitated transition of internal data from on-site databases to cloud-hosted database servers using Snowflake, with continuous deployment managed using Docker containers deployed in GitHub workflows. Worked with Jira to manage Agile workflow and Confluence for documentation.
     \end{flushleft}
   \end{minipage}
-  % \vspace{.5em} \\
-    %% JOB 3 %%
-  % \begin{large} \textbf{Student Dining Hall Worker} \end{large} \\
-  % \textit{University of California, Santa Cruz \\ Santa Cruz, CA \qquad Sept. 2021 - Feb. 2022}
+  \pagebreak
   \vspace{1em} \\
   %% PROJECTS %%
-  \begin{LARGE} \faTools\hspace{5px}PROJECTS \end{LARGE}
+  \begin{LARGE} \faTools\hspace{5px} PROJECTS \end{LARGE}
   \vspace{.5em} \\
-    %% PROJECT 1 %%
-  % blocks to isolate the effects of `select` commands
+  %% PROJECT 1 %%
   {
-    \fontsize{10.5pt}{\baselineskip}\selectfont
-    \textbf{Choreographic Programming Summer Research}
+  \fontsize{11pt}{\baselineskip}\selectfont
+  \textbf{CruzHacks 2024 Hackathon}
   }
-  \textit{Typescript, Node.js, Git/Github, ESLint} \\
+  \\
+  \textit{React Native, Typescript, Express.js, sqlite, Google Cloud, Docker, Google Maps API} \\
+  January 2024
+  \vspace{5px} \\
+  \begin{minipage}{.5\textwidth}
+    \begin{flushleft}
+      Participated with three others in the 2024 CruzHacks hackathon held in-person at UC Santa Cruz, where I helped design and program the containerized Express.js backend database hosted in Google Cloud, as well as the React Native front end for a cross-platform mobile application that allows students to add and share the locations of events around their campus using the built-in Google Maps interface.
+    \end{flushleft}
+  \end{minipage}
+  \vspace{.5em} \\
+  %% PROJECT 2 %%
+  % blocks to isolate the effects of `selectfont` commands
+  {
+  \fontsize{10.5pt}{\baselineskip}\selectfont
+  \textbf{Choreographic Programming Summer Research}
+  }
+  \textit{Typescript, Node.js, Git/Github, ESLint, Distributed Systems} \\
   Summer 2023
   \vspace{5px} \\
   \begin{minipage}{.5\textwidth}
@@ -178,11 +202,12 @@
       Worked with UCSC grad student to develop novel choreographic programming \href{https://github.com/ImpregnableProgrammer/choreography-ts-RK-work}{library} in Typescript for facilitating development of deadlock-free distributed system programs. Mainly helped write custom ESLint linting rules for the library, as well as using the library to implement RSA key exchange.
     \end{flushleft}
   \end{minipage}
-  \vspace{.5em} \\
-    %% PROJECT 2 %%
+  \columnbreak \\
+  \vspace{1em} \\
+  %% PROJECT 3 %%
   {
-    \fontsize{11pt}{\baselineskip}\selectfont
-    \textbf{Cross-platform Restroom-finding Mobile App}
+  \fontsize{11pt}{\baselineskip}\selectfont
+  \textbf{Cross-platform Restroom-finding Mobile App}
   }
   % change font size mid-document
   % \fontsize{9pt}{\baselineskip}\selectfont

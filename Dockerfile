@@ -1,6 +1,6 @@
 # Create devcontainer with tex-live distribution
 # Creates around ~700 MB LaTeX devcontainer image
-FROM debian:stable-slim
+FROM --platform=linux/amd64 debian:stable-slim
 # DEBIAN_FRONTEND: https://askubuntu.com/questions/972516/debian-frontend-environment-variable
 ENV DEBIAN_FRONTEND=noninteractive
 # Manually install texlive since the texlive package for Debian bookworm (stable) is out of date...
@@ -38,4 +38,5 @@ RUN . ~/.bashrc && \
   booktabs tasks datetime \
   etoolbox fmtcount xkeyval \
   comfortaa blindtext fontawesome5 \
-  wrapfig fundus-calligra calligra
+  wrapfig fundus-calligra calligra \
+  ragged2e
