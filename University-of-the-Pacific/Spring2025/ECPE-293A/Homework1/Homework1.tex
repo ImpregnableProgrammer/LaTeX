@@ -1,0 +1,57 @@
+\documentclass[11pt,twoside]{article}
+
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{fancybox}
+\usepackage{fancyhdr}
+% https://tex.stackexchange.com/questions/664/why-should-i-use-usepackaget1fontenc
+\usepackage[T1]{fontenc}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{booktabs} % better table formatting using `\toprule', `\midrule', \bottomrule
+\usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+
+% commands for rending number class symbols
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+
+% commands for certain maths structures
+\newcommand{\m}[1]{\begin{pmatrix}#1\end{pmatrix}}
+
+\title{Homework \# 1: Probability Theory}
+\author{Rohan Kapur, ECPE 293A}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+	\item
+	      \begin{enumerate}
+		      \item We know that for each packet received, $P(a) = 2P(v)$ and $P(a)+P(v)=1$. Therefore, $P(a)+P(v)=2P(v)+P(v)=3P(v)=1 \rightarrow P(v)=\frac{1}{3} \rightarrow P(a) = \frac{2}{3}$. We need to find $P(\text{group discarded | 2nd packet is audio})$. The group is discarded if there are no video packets in the group. So by only considering the groups where the second packet is audio , we get:
+		            \begin{align*}
+			            P(\text{group discarded | 2nd packet is audio}) = P(\{aaa\}) = \left(\frac{2}{3}\right)^3 = \boxed{\frac{8}{27}}
+		            \end{align*}
+		      \item Now by considering all $2^3 = 8$ groups of 3 packets in general, we get
+		            \begin{align*}
+			            P(\text{No video packets}) = P(\{aaa\}) = \left(\frac{2}{3}\right)^3 = \boxed{\frac{8}{27}}
+		            \end{align*}
+		            the same answer as in part (a).
+		      \item Again, by considering all possible groups of 3 packets, we get
+		            \begin{align*}
+			            P(\text{exactly 1 video packet}) = P(\{vaa, ava, aav\}) = \frac{4}{27} + \frac{4}{27} + \frac{4}{27} = \boxed{\frac{12}{27}}
+		            \end{align*}
+	      \end{enumerate}
+	\item
+	      We know that in the general population, P(heart disease)$=$0.08, P(high cholesterol | heart disease)$=$0.7 and P(high cholesterol)$=$0.3. Given a patient with high cholesterol, we want to find their chance of having heart disease, i.e. \textbf{P(heart disease | high cholesterol)}. By applying conditional probability laws, we get:
+	      \begin{align*}
+		      P(\text{heart disease | high cholesterol}) & = \frac{P(\text{high cholesterol | heart disease})P(\text{heart disease})}{P(\text{high cholesterol})} \\ &= \frac{(0.7)(0.08)}{0.3} \approx 0.187 \rightarrow \boxed{18.7\%}
+	      \end{align*}
+	      So the patient with high cholesterol has only an 18.7\% chance of having heart disease, or a \textbf{81.3\%} chance of not having it, making them \textbf{not at risk of heart disease}.
+\end{enumerate}
+
+\end{document}

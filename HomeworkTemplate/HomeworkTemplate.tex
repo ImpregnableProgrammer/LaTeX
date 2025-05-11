@@ -8,9 +8,12 @@
 % https://tex.stackexchange.com/questions/664/why-should-i-use-usepackaget1fontenc
 \usepackage[T1]{fontenc}
 \usepackage{color}
-\usepackage{graphicx}
+\usepackage{graphicx} % for enhanced color and graphics
 \usepackage{booktabs} % better table formatting using `\toprule', `\midrule', \bottomrule
 \usepackage[left=1in,right=1in,top=1in,bottom=1in]{geometry}
+\usepackage[savemem]{listings} % render source code
+\usepackage{caption} % enhanced caption styling
+\usepackage{multirow} % for \multirow
 
 % commands for rending number class symbols
 \newcommand{\R}{\mathbb{R}}
@@ -21,6 +24,39 @@
 
 % commands for certain maths structures
 \newcommand{\m}[1]{\begin{pmatrix}#1\end{pmatrix}}
+
+% source code listings setup
+% use \begin{lstlisting}[options]...\end{lstlisting} for source code
+\lstloadlanguages{C,C++,Python}
+\lstset{
+    language=Python,
+    basicstyle=\ttfamily\small,
+    backgroundcolor=\color{white},
+    % where lline numbers are generated
+    numbers=left,
+    % how far left line numbers are generated
+    numbersep=7pt,
+    % whether to insert newlines where needed
+    breaklines=true,
+    % how many line numbers are shown at a time
+    stepnumber=2,
+    % listing frame: t=top, b=bottom, l=left, r=right
+    frame=tblr,
+    % flexible column rendering
+    columns=flexible,
+    % don't render space characters in strings or otherwise
+    showstringspaces=false,
+    % various styling settings for elements
+    keywordstyle=\color{blue},
+	commentstyle=\color[rgb]{0,0.7,0},
+	stringstyle=\color{red},
+    % whether to break lines at whitespace characters
+    breakatwhitespace=false,
+    % size of tabs in spaces
+    tabsize=4,
+    % how many spaces to "eat up" in the beginning
+    gobble=8
+}
 
 \title{Homework \#}
 \author{Rohan Kapur, Class}

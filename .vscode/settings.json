@@ -3,7 +3,6 @@
         "en"
     ],
     "spellright.documentTypes": [
-        "latex",
         "markdown",
         "Log"
     ],
@@ -16,5 +15,29 @@
         "Log": {
             "parser": "latex"
         }
-    }
+    },
+    "latex-workshop.showContextMenu": true,
+    "latex-workshop.view.pdf.viewer": "tab",
+    // Set the formatter for latex files to `latexindent`
+    // https://github.com/James-Yu/latex-workshop/wiki/Format
+    // `tex-fmt` is MUCH faster than `latexindent`, but it requires Rust
+    // which makes the container image a lot bigger!
+    //"latex-workshop.formatting.latex": "latexindent",
+    // "latex-workshop.formatting.latexindent.args": [
+    //     "-c",
+    //     "%DIR%/",
+    //     "%TMPFILE%",
+    //     "-y=defaultIndent:'  '"
+    // ],
+    "ltex.java.path": "/usr",
+    "[latex]": {
+        "editor.formatOnPaste": false,
+        "editor.formatOnSave": false,
+        "editor.suggestSelection": "recentlyUsedByPrefix"
+    },
+    "github.copilot.editor.enableAutoCompletions": false,
+    "cSpell.words": [
+        "hyperparameters",
+        "uncategorized"
+    ]
 }

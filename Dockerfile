@@ -1,12 +1,17 @@
 # Create devcontainer with tex-live distribution
 # Creates around ~700 MB LaTeX devcontainer image
-FROM --platform=linux/amd64 debian:stable-slim
+# FROM --platform=linux/amd64 debian:stable-slim
+FROM debian:stable-slim
 # DEBIAN_FRONTEND: https://askubuntu.com/questions/972516/debian-frontend-environment-variable
 ENV DEBIAN_FRONTEND=noninteractive
 # Manually install texlive since the texlive package for Debian bookworm (stable) is out of date...
 # This installs th4e latest TexLive distribution
 # Install guide: https://www.tug.org/texlive/quickinstall.html
-RUN apt-get update && apt-get install -y git perl wget && apt-get clean
+# Install java on Ubuntu/Debian-based systems: https://ubuntu.com/tutorials/install-jre
+# Java needed for `ltex` extension: https://valentjn.github.io/ltex/index.html
+# `apt` vs `apt-get`: https://aws.amazon.com/compare/the-difference-between-apt-and-apt-get/
+# `apt-get` is more stable in scripts, but has no search functionality
+RUN apt-get update && apt-get install -y default-jre git perl wget && apt-get clean
 ADD https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz install-tl-unx.tar.gz
 RUN zcat < install-tl-unx.tar.gz | tar -xf -
 # install-tl documentation: https://www.tug.org/texlive/doc/install-tl.html
@@ -39,4 +44,8 @@ RUN . ~/.bashrc && \
   etoolbox fmtcount xkeyval \
   comfortaa blindtext fontawesome5 \
   wrapfig fundus-calligra calligra \
-  ragged2e
+  ragged2e texcount ieeetran times xcolor listings multirow cite algorithmicx caption
+# Properly set system locale settings
+ENV LANGUAGE=C.UTF8
+ENV LC_ALL=C.UTF8
+ENV LANG=en_US.UTF-8
