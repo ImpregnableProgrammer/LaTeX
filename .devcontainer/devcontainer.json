@@ -14,8 +14,6 @@
   "mounts": [
     // Mount host directory for ssh keys
     "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,consistency=cached",
-    // Mount host directory for GPG keys
-    // "source=${localEnv:HOME}/.gnupg,target=/root/.gnupg,type=bind,consistency=cached"
   ],
   "customizations": {
     "vscode": {
