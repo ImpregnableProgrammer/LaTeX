@@ -56,9 +56,9 @@ RUN chmod +x starship_install.sh && ./starship_install.sh -y
 RUN echo 'eval "$(starship init bash)"' >> ~/.bashrc
 # Configure git for commit signing with GPG if GPG_SIGNING_KEY env var is defined
 # To use: add `export GPG_SIGNING_KEY=<GPG KEY ID>` to your `~/.bash_profile`
-ARG GPG_SIGNING_KEY
-RUN if [[ -n ${GPG_SIGNING_KEY} ]]; then \
-  git config --global user.signingkey ${GPG_SIGNING_KEY}; \
-  git config --global commit.gpgSign true; \
-  git config --global tag.gpgSign true; \
-  fi
+# ARG GPG_SIGNING_KEY
+# RUN if [[ -n ${GPG_SIGNING_KEY} ]]; then \
+#   git config --global user.signingkey ${GPG_SIGNING_KEY}; \
+#   git config --global commit.gpgSign true; \
+#   git config --global tag.gpgSign true; \
+#   fi
