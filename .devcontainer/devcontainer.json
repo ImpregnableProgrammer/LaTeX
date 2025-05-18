@@ -6,8 +6,17 @@
     // Sets the run context to one level up instead of the .devcontainer folder.
     "context": "..",
     // Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
-    "dockerfile": "../Dockerfile"
+    "dockerfile": "../Dockerfile",
+    "args": {
+      "GPG_SIGNING_KEY": "${localEnv:GPG_SIGNING_KEY:}"
+    }
   },
+  "mounts": [
+    // Mount host directory for ssh keys
+    "source=${localEnv:HOME}/.ssh,target=/root/.ssh,type=bind,consistency=cached",
+    // Mount host directory for GPG keys
+    // "source=${localEnv:HOME}/.gnupg,target=/root/.gnupg,type=bind,consistency=cached"
+  ],
   "customizations": {
     "vscode": {
       "extensions": [
@@ -20,7 +29,9 @@
         "streetsidesoftware.code-spell-checker",
         "valentjn.vscode-ltex",
         "tecosaur.latex-utilities",
-        "mechatroner.rainbow-csv"
+        "mechatroner.rainbow-csv",
+        "mutantdino.resourcemonitor",
+        "google.geminicodeassist"
       ]
     }
   }

@@ -11,7 +11,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 # Java needed for `ltex` extension: https://valentjn.github.io/ltex/index.html
 # `apt` vs `apt-get`: https://aws.amazon.com/compare/the-difference-between-apt-and-apt-get/
 # `apt-get` is more stable in scripts, but has no search functionality
-RUN apt-get update && apt-get install -y default-jre git perl wget && apt-get clean
+RUN apt-get update && apt-get install -y curl default-jre git gpg perl wget && apt-get clean
 ADD https://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz install-tl-unx.tar.gz
 RUN zcat < install-tl-unx.tar.gz | tar -xf -
 # install-tl documentation: https://www.tug.org/texlive/doc/install-tl.html
@@ -49,3 +49,16 @@ RUN . ~/.bashrc && \
 ENV LANGUAGE=C.UTF8
 ENV LC_ALL=C.UTF8
 ENV LANG=en_US.UTF-8
+# Install starship fancy command line and configure it
+# https://github.com/starship/starship
+RUN curl -sS https://starship.rs/install.sh >> starship_install.sh
+RUN chmod +x starship_install.sh && ./starship_install.sh -y
+RUN echo 'eval "$(starship init bash)"' >> ~/.bashrc
+# Configure git for commit signing with GPG if GPG_SIGNING_KEY env var is defined
+# To use: add `export GPG_SIGNING_KEY=<GPG KEY ID>` to your `~/.bash_profile`
+ARG GPG_SIGNING_KEY
+RUN if [[ -n ${GPG_SIGNING_KEY} ]]; then \
+  git config --global user.signingkey ${GPG_SIGNING_KEY}; \
+  git config --global commit.gpgSign true; \
+  git config --global tag.gpgSign true; \
+  fi
